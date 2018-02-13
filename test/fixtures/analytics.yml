@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  visits: 1
+  views: 1
+  campaign: MyString
+
+two:
+  visits: 1
+  views: 1
+  campaign: MyString
