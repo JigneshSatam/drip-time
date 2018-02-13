@@ -18,4 +18,13 @@ class Exporter < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false },
                     presence: true,
                     length: { maximum: 255 }
+
+  before_save :create_archive
+
+  has_many :archived, class_name: "ArchivedExporter"
+
+  def create_archive
+    self.build_archived_exporter
+    raise
+  end
 end

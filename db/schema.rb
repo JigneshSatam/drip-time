@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131120843) do
+ActiveRecord::Schema.define(version: 20180213174042) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "analytics", force: :cascade do |t|
     t.integer  "visits"
@@ -20,6 +23,15 @@ ActiveRecord::Schema.define(version: 20180131120843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "archived_exporters", force: :cascade do |t|
+    t.string   "model_action"
+    t.json     "snapshot"
+    t.integer  "exporter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["exporter_id"], name: "index_archived_exporters_on_exporter_id", using: :btree
+  end
+
   create_table "exporters", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -27,8 +39,8 @@ ActiveRecord::Schema.define(version: 20180131120843) do
     t.text     "address"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["email"], name: "index_exporters_on_email", unique: true
-    t.index ["name"], name: "index_exporters_on_name"
+    t.index ["email"], name: "index_exporters_on_email", unique: true, using: :btree
+    t.index ["name"], name: "index_exporters_on_name", using: :btree
   end
 
   create_table "insurances", force: :cascade do |t|
@@ -37,8 +49,9 @@ ActiveRecord::Schema.define(version: 20180131120843) do
     t.integer  "exporter_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["exporter_id"], name: "index_insurances_on_exporter_id"
-    t.index ["grade"], name: "index_insurances_on_grade"
+    t.index ["exporter_id"], name: "index_insurances_on_exporter_id", using: :btree
+    t.index ["grade"], name: "index_insurances_on_grade", using: :btree
   end
 
+  add_foreign_key "archived_exporters", "exporters"
 end
