@@ -64,5 +64,4 @@ ActiveRecord::Schema.define(version: 20180214092704) do
     t.index ["archivable_type", "archivable_id"], name: "index_modifications_on_archivable_type_and_archivable_id", using: :btree
   end
 
-  add_foreign_key "archived_exporters", "exporters"
 end
