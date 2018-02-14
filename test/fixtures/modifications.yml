@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attribute_name: MyString
+  from: MyText
+  to: MyText
+  archivable: one
+  archivable_type: Archivable
+
+two:
+  attribute_name: MyString
+  from: MyText
+  to: MyText
+  archivable: two
+  archivable_type: Archivable

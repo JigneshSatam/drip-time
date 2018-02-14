@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213174042) do
+ActiveRecord::Schema.define(version: 20180214092704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20180213174042) do
     t.datetime "updated_at",  null: false
     t.index ["exporter_id"], name: "index_insurances_on_exporter_id", using: :btree
     t.index ["grade"], name: "index_insurances_on_grade", using: :btree
+  end
+
+  create_table "modifications", force: :cascade do |t|
+    t.string   "attribute_name"
+    t.text     "from"
+    t.text     "to"
+    t.string   "archivable_type"
+    t.integer  "archivable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["archivable_type", "archivable_id"], name: "index_modifications_on_archivable_type_and_archivable_id", using: :btree
   end
 
   add_foreign_key "archived_exporters", "exporters"
