@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model_action: MyString
+  snapshot: 
+  insurance: one
+
+two:
+  model_action: MyString
+  snapshot: 
+  insurance: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180214092704) do
+ActiveRecord::Schema.define(version: 20180215063643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20180214092704) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["exporter_id"], name: "index_archived_exporters_on_exporter_id", using: :btree
+  end
+
+  create_table "archived_insurances", force: :cascade do |t|
+    t.string   "model_action"
+    t.json     "snapshot"
+    t.integer  "insurance_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["insurance_id"], name: "index_archived_insurances_on_insurance_id", using: :btree
   end
 
   create_table "exporters", force: :cascade do |t|
