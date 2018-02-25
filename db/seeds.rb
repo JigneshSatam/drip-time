@@ -10,12 +10,13 @@ e1 = Exporter.new(name: "abc", email: "abc@def.com", password: "abcdefg")
 e1.save
 e1.update(name: "abc-2")
 
-e2 = Exporter.create(name: "xyz", email: "xyz@def.com", password: "abcdefg")
+e2 = Exporter.create(name: "dhawbdw", email: "dbawhdbjwa@def.com", password: "abcdefg")
 e3 = Exporter.create(name: "lmn", email: "lmn@def.com", password: "abcdefghi")
 
 # To get Exporters where 'name' changed from 'abc' to 'abc-2' and where archived before today
 # should return an array consisting of 'e1'
-Exporter.joins(archived: :modifications).where(modifications: {attribute_name: "name", from: "abc", to: "abc-2"}).where("archived_exporters.created_at < ?", Date.today)
+Exporter.joins(archived: :modifications).where(modifications: {attribute_name: "name", from: "abc", to: "abc-2"})
+# .where("archived_exporters.created_at < ?", Date.today.end_of_day)
 
 i1 = Insurance.new(status: "inprogress", exporter_id: e2.id, grade: 10)
 i1.save
